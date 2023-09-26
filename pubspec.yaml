@@ -87,5 +87,12 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family: DM_Mono
+      fonts:
+        - asset: fonts/DM_Mono/DMMono-Regular.ttf
+        - asset: fonts/DM_Mono/DMMono-Italic.ttf
+          style: italic
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
