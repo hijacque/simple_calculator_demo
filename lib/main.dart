@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+
+ButtonStyle selectedOperationBtn = TextButton.styleFrom(
+  backgroundColor: Colors.blue,
+  textStyle: TextStyle(color: Colors.white),
+);
 
 void main() {
   runApp(const MyApp());
@@ -13,33 +19,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Simple Calculator'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -48,67 +36,230 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String display = '0';
+  String firstNum = '';
+  String secondNum = '';
+  String operation = '';
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  getDigit(digit) {
+    if (operation.isEmpty) {
+      if (display.contains('='))
+        firstNum = digit;
+      else
+        firstNum += digit;
+      setState(() => display = firstNum);
+    } else {
+      secondNum += digit;
+      setState(() => display = '$firstNum $operation $secondNum');
+    }
+  }
+
+  getOperation(newOperation) {
+    if (operation.isEmpty) {
+      operation = newOperation;
+      firstNum = firstNum.isEmpty ? '0' : firstNum;
+      setState(() => display = '$firstNum $operation');
+    } else if (operation == newOperation) {
+      operation = '';
+      setState(() => display = firstNum);
+    } else {
+      operation = newOperation;
+      setState(() => display = '$firstNum $operation');
+    }
+  }
+
+  getResult() {
+    if (firstNum.isEmpty || secondNum.isEmpty || operation.isEmpty) {
+      return;
+    }
+    int n1 = int.parse(firstNum);
+    int n2 = int.parse(secondNum);
+    int result = 0;
+
+    switch (operation) {
+      case '+':
+        result = n1 + n2;
+        break;
+      case '-':
+        result = n1 - n2;
+        break;
+      case '*':
+        result = n1 * n2;
+        break;
+      case '/':
+        result = (n1 / n2).round();
+        break;
+    }
+
+    secondNum = '';
+    operation = '';
+    firstNum = result.toString();
+    setState(() => display = '= $result');
+  }
+
+  clearDisplay() {
+    firstNum = '';
+    secondNum = '';
+    operation = '';
+    setState(() => display = '0');
+  }
+
+  backspace() {
+    if (operation.isEmpty) {
+      firstNum = firstNum.substring(0, max(0, firstNum.length - 1));
+      if (firstNum.isEmpty) setState(() => display = '0');
+      else setState(() => display = firstNum);
+    } else {
+      secondNum = secondNum.substring(0, max(0, secondNum.length - 1));
+      if (secondNum.isEmpty) setState(() => display = '$firstNum $operation');
+      else setState(() => display = '$firstNum $operation $secondNum');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SafeArea(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: -2.0,
+                    blurRadius: 6.0,
+                  ),
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+              margin: EdgeInsets.symmetric(vertical: 18),
+              alignment: Alignment.center,
+              width: 300,
+              child: Text(
+                display,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () => getDigit('7'),
+                          child: Text('7'),
+                        ),
+                        TextButton(
+                          onPressed: () => getDigit('8'),
+                          child: Text('8'),
+                        ),
+                        TextButton(
+                          onPressed: () => getDigit('9'),
+                          child: Text('9'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () => getDigit('4'),
+                          child: Text('4'),
+                        ),
+                        TextButton(
+                          onPressed: () => getDigit('5'),
+                          child: Text('5'),
+                        ),
+                        TextButton(
+                          onPressed: () => getDigit('6'),
+                          child: Text('6'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () => getDigit('1'),
+                          child: Text('1'),
+                        ),
+                        TextButton(
+                          onPressed: () => getDigit('2'),
+                          child: Text('2'),
+                        ),
+                        TextButton(
+                          onPressed: () => getDigit('3'),
+                          child: Text('3'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () => getDigit('0'),
+                          child: Text('0'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    TextButton(
+                      onPressed: () => getOperation('+'),
+                      child: Text('+'),
+                      // style: operation == '+' ? selectedOperationBtn : null,
+                    ),
+                    TextButton(
+                      onPressed: () => getOperation('-'),
+                      child: Text('-'),
+                    ),
+                    TextButton(
+                      onPressed: () => getOperation('*'),
+                      child: Text('*'),
+                    ),
+                    TextButton(
+                      onPressed: () => getOperation('/'),
+                      child: Text('/'),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    TextButton(
+                      onPressed: () => clearDisplay(),
+                      child: Text('CE'),
+                    ),
+                    TextButton(
+                      onPressed: () => backspace(),
+                      child: Icon(Icons.backspace),
+                    ),
+                    TextButton(
+                      onPressed: () => getResult(),
+                      child: Text('='),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
