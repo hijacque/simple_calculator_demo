@@ -3,12 +3,12 @@ import 'dart:math';
 
 final ButtonStyle keyBtnStyle = TextButton.styleFrom(
   backgroundColor: Color.fromARGB(255, 235, 235, 235),
-  fixedSize: Size(32.0, 32.0),
+  fixedSize: Size(50, 45),
   side: BorderSide(color: Colors.teal, width: 1.5),
 );
 
 const TextStyle keyTextStyle = TextStyle(
-  fontSize: 16.0,
+  fontSize: 18.0,
   fontWeight: FontWeight.w700,
 );
 
@@ -50,220 +50,397 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Container(
-          width: 310,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                      spreadRadius: 0,
-                      blurRadius: 4.0,
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                margin: EdgeInsets.symmetric(vertical: 18),
-                alignment: Alignment.center,
-                width: 300,
-                child: Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
                   ),
+                  BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: 0,
+                    blurRadius: 4.0,
+                  ),
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+              margin: EdgeInsets.symmetric(vertical: 32, horizontal: 12.0),
+              alignment: Alignment.center,
+              width: 300,
+              child: Text(
+                '0',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Row(
+            ),
+            Container(
+              width: 360,
+              margin: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Flex(
+                direction: Axis.horizontal,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 105,
+                  Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '7',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('7', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '4',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('4', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '1',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('1', style: keyTextStyle,),
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: 140,
+                  SizedBox(width: 4.0),
+                  Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '8',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('8', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '5',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('5', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '2',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('2', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '0',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('0', style: keyTextStyle,),
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: 105,
+                  SizedBox(width: 4.0),
+                  Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '9',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('9', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '6',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('6', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '3',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('3', style: keyTextStyle,),
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: 140,
+                  SizedBox(width: 4.0),
+                  Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '+',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('+', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '-',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('-', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '×',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('×', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '÷',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('÷', style: keyTextStyle,),
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: 105,
+                  SizedBox(width: 4.0),
+                  Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            'CE',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('CE', style: keyTextStyle,),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
+                          onPressed: () {},
                           child: Icon(Icons.backspace),
                         ),
+                        SizedBox(height: 4.0),
                         TextButton(
                           style: keyBtnStyle,
-                          onPressed: () => {},
-                          child: Text(
-                            '=',
-                            style: keyTextStyle,
-                          ),
+                          onPressed: () {},
+                          child: Text('=', style: keyTextStyle,),
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
+
+// Center(
+//   child: Container(
+//     width: 300,
+//     child: Column(
+//       crossAxisAlignment: CrossAxisAlignment.center,
+//       children: [
+//         Container(
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.all(Radius.circular(4)),
+//             boxShadow: [
+//               BoxShadow(
+//                 color: Colors.grey,
+//               ),
+//               BoxShadow(
+//                 color: Colors.white,
+//                 spreadRadius: 0,
+//                 blurRadius: 4.0,
+//               ),
+//             ],
+//           ),
+//           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+//           margin: EdgeInsets.symmetric(vertical: 32),
+//           alignment: Alignment.center,
+//           width: 300,
+//           child: Text(
+//             '0',
+//             style: TextStyle(
+//               fontSize: 20.0,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ),
+//         Flex(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           direction: Axis.horizontal,
+//           children: [
+//             Flex(
+//               direction: Axis.vertical,
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '7',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '4',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '1',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Flex(
+//               direction: Axis.vertical,
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '8',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '5',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '2',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '0',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Flex(
+//               direction: Axis.vertical,
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '9',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '6',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '3',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Flex(
+//               direction: Axis.vertical,
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '+',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '-',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '×',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '÷',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Flex(
+//               direction: Axis.vertical,
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     'CE',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Icon(Icons.backspace),
+//                 ),
+//                 SizedBox(height: 4),
+//                 TextButton(
+//                   style: keyBtnStyle,
+//                   onPressed: () => {},
+//                   child: Text(
+//                     '=',
+//                     style: keyTextStyle,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ],
+//     ),
+//   ),
+// ), // This trailing comma makes auto-formatting nicer for build methods.
